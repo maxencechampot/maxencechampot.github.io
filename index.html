@@ -1,36 +1,377 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="fr">
-<head>
-	<title>Stage officiel des pompiers de Morlais</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link href="style.css" rel="stylesheet" type="text/css"/>
-</head>
-<body>
-	<div id="menu">
-		<h1>Sapeurs pompiers de Morlais</h1>
-		<ul>
-			<li><a href="./pages/centre.html">Le centre</a></li>
-			<li><a href="./pages/stats.html">Les stats </a></li>
-		</ul>
-	</div>
-	
-	<div id="centre">
-		<fieldset>
-		<legend>Comment appeler les pompiers ?</legend>
-		<h2>Composer le 18 ou le 112 (numéro d'urgence européen).</h2>
-		<h2>Composer uniquement ces numéros pour les urgences graves</h2>
-		<h2>Autres numéros d'urgence : 15 samu - 17 police</h2>
-		<h2>En cas de sinistre, indiquer :</h2>
-		<ul>
-			<li class="cligno">La nature du sinistre</li>
-			<li class="cligno">Le lieu</li>
-			<li class="cligno">Le nombre de victimes et leurs états</li>
-		</ul>
-		<center>
-		<!--photographie du centre du secours -->
-		<img src="./photos/centre.jpg">
-		</center>
-		</fieldset>
-	</div>
-</body>
-</html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root{
+    --accent:#3038d8;
+  }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--color-background-tertiary);
+    color: var(--color-text-primary);
+    min-height: 600px;
+    overflow-y: auto;
+  }
+  a{
+    text-decoration: none;
+    color:inherit;
+  }
+  #navbar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 3rem;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(8px);
+  }
+
+  #navbar.sticky {
+    >*{
+      opacity: 0.65;
+    }
+    position: fixed;
+    top: 0;
+    background: var(--color-background-primary);
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    height: 60px;
+    padding: 0 2.5rem;
+    box-shadow: 0 1px 32px rgba(0,0,0,0.06);
+    
+    &:hover{
+      >*{
+        opacity:1;
+      }
+      backdrop-filter: blur(50px);
+      border: #f8f4ef;
+      box-shadow: 0 1px 32px rgba(0,0,0,0.10);
+    }
+  }
+*{
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: opacity 0.2s;
+  }
+
+  .nav-logo:hover { opacity: 0.7; }
+
+  .nav-logo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+    transition: transform 0.3s;
+  }
+
+  .nav-logo:hover .nav-logo-dot {
+    transform: scale(1.4);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    position: relative;
+    transition: color 0.2s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-links a:hover { color: var(--color-text-primary); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary) !important;
+    padding: 9px 20px;
+    border: 0.5px solid var(--color-border-primary);
+    border-radius: 24px;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta::after { display: none !important; }
+
+  .nav-cta:hover {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #fff !important;
+  }
+}
+*{
+  .hero {
+    height: 100vh;
+    background: linear-gradient(160deg, #f8f4ef 0%, #e8e0d5 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 2rem;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: #2C2C2A;
+  }
+
+  .hero p {
+    font-size: 16px;
+    color: #888780;
+    max-width: 400px;
+    line-height: 1.7;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+  }
+
+  .scroll-hint:hover { opacity: 0.9; }
+
+  .scroll-arrow {
+    width: 20px; height: 20px;
+    border-right: 1px solid #888780;
+    border-bottom: 1px solid #888780;
+    transform: rotate(45deg);
+    animation: bounce 1.5s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(4px); }
+  }
+
+  .content-section {
+    border-radius: 14px;
+    padding: 5rem 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+
+    &:hover{
+      outline: 5px dotted var(--accent);
+      outline-offset: -5px;
+    }
+  }
+
+  .content-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-primary);
+  }
+
+  .content-section p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .sticky-notice {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-background-info);
+    color: var(--color-text-info);
+    font-size: 13px;
+    padding: 8px 16px;
+    border-radius: var(--border-radius-md);
+    margin-top: 1.5rem;
+  }
+
+  .dot-live {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+}
+#footer{
+  height: 65vh;
+  background: linear-gradient(160deg, var(--accent)0%,#585fec 100%);
+  
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+*{/* cartes qui s'empillent */
+.panel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-size: 32px;
+  top:0;
+  position: sticky;
+
+  backdrop-filter: blur(8px);
+  background: linear-gradient(0deg, #ffffff 60%, #e8e0d500 100%);/*Permet de masquer le derriere progressivement*/
+  padding-bottom: 40px;
+}
+.panel1{
+  z-index: 1;
+}
+.panel2{
+  z-index: 2;
+}
+.panelN{
+  z-index: 3;
+}
+}
+</style>
+
+<div id="scroll-container" style="height: 600px; overflow-y: auto; position: relative;">
+  <div id="navbar">
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-dot"></span>
+      Logo
+    </a>
+    <ul class="nav-links">
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#">Process</a></li>
+      <li><a href="#" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="hero" style="position: relative;">
+    <p class="hero-label">Data Science Student</p>
+    <h1>Rendre<br><i>l'abstrait</i><br>Accessible</h1>
+    <p>Donnée : ma spécialité <br><a href="#about">Je</a> vous aide à  la <b>comprendre</b> pour mieux <b>décider</b>.</p>
+    <div class="scroll-hint" onclick="document.getElementById('scroll-container').scrollBy({top: 400, behavior: 'smooth'})">
+      <div class="scroll-arrow"></div>
+      Défiler
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>Mes projets</h2>
+    <p>Une sélection de travaux réalisés pour des clients variés, allant de startups tech à des marques de luxe. Chaque projet est une opportunité d'explorer de nouvelles directions créatives.</p>
+    <p>La navbar ci-dessus est désormais fixe en haut de la page. Continuez à défiler pour observer le comportement.</p>
+    <div class="sticky-notice">
+      <div class="dot-live"></div>
+      La navbar est maintenant en position <strong>sticky</strong>
+    </div>
+    <div>
+      <a href="projets.html"></a>
+    </div>
+  </div>
+
+  <div class="content-section" id="about">
+    <h2>À propos de moi</h2>
+    <p>Passionnée par le design et la technologie, je crée des interfaces qui racontent une histoire. Mon approche mêle rigueur technique et sensibilité artistique.</p>
+    <p>Basée à Paris, je travaille avec des clients du monde entier pour donner vie à leurs projets digitaux.</p>
+  </div>
+
+  <div class="content-section" id="projets">
+    <h2>Top Projets</h2>
+    <p>Découvrons mes projets préférés</p>
+    <p>si click sur le titre, rediriger vers page Projets</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Formation</h2>
+    <div class="sub-cont">
+
+    </div>
+    <p>afficher une frise anti-chronologique, avec les noms des formations; voir plus s'affiche au hover, si click, afficher mes bilans écrits </p>
+  </div>
+  
+  <div class="content-section">
+    <h2>Réflexion sur mon Parcours</h2>
+    <p>après la date d'écriture, afficher le bilan correspondant,possibilité de gallerie si on click sur les icones < ou ></p>
+  </div>
+
+  <div id="footer" style="z-index: 5;">
+    <div class="content-section">
+      <h2>Contact</h2>
+      <p>Affichage des différents réseaux</p>
+      <div style="display: grid;">
+        <span>Instagram</span>
+        <span>Linkedin</span>
+        <span>Github</span>
+        <span>Mail</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+    
+<script>
+  const scrollContainer = document.getElementById('scroll-container');
+  const navbar = document.getElementById('navbar');
+
+  scrollContainer.addEventListener('scroll', () => {
+    if (scrollContainer.scrollTop > 60) {
+      navbar.classList.add('sticky');
+    } else {
+      navbar.classList.remove('sticky');
+    }
+  });
+</script>
