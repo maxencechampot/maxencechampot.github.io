@@ -1,264 +1,4 @@
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root{
-    --accent:#3038d8;
-  }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--color-background-tertiary);
-    color: var(--color-text-primary);
-    min-height: 600px;
-    overflow-y: auto;
-  }
-  a{
-    text-decoration: none;
-    color:inherit;
-  }
-  #navbar {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 0 3rem;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    backdrop-filter: blur(8px);
-  }
-
-  #navbar.sticky {
-    >*{
-      opacity: 0.65;
-    }
-    position: fixed;
-    top: 0;
-    background: var(--color-background-primary);
-    border-bottom: 0.5px solid var(--color-border-tertiary);
-    height: 60px;
-    padding: 0 2.5rem;
-    box-shadow: 0 1px 32px rgba(0,0,0,0.06);
-    
-    &:hover{
-      >*{
-        opacity:1;
-      }
-      backdrop-filter: blur(50px);
-      border: #f8f4ef;
-      box-shadow: 0 1px 32px rgba(0,0,0,0.10);
-    }
-  }
-*{
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 500;
-    letter-spacing: -0.5px;
-    color: var(--color-text-primary);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: opacity 0.2s;
-  }
-
-  .nav-logo:hover { opacity: 0.7; }
-
-  .nav-logo-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    display: inline-block;
-    transition: transform 0.3s;
-  }
-
-  .nav-logo:hover .nav-logo-dot {
-    transform: scale(1.4);
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    position: relative;
-    transition: color 0.2s;
-  }
-
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px; left: 0;
-    width: 0; height: 1px;
-    background: var(--accent);
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .nav-links a:hover { color: var(--color-text-primary); }
-  .nav-links a:hover::after { width: 100%; }
-
-  .nav-cta {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--color-text-primary) !important;
-    padding: 9px 20px;
-    border: 0.5px solid var(--color-border-primary);
-    border-radius: 24px;
-    transition: all 0.2s !important;
-  }
-
-  .nav-cta::after { display: none !important; }
-
-  .nav-cta:hover {
-    background: var(--accent) !important;
-    border-color: var(--accent) !important;
-    color: #fff !important;
-  }
-}
-*{
-  .hero {
-    height: 100vh;
-    background: linear-gradient(160deg, #f8f4ef 0%, #e8e0d5 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 2rem;
-  }
-
-  .hero-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 400;
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
-    color: #2C2C2A;
-  }
-
-  .hero p {
-    font-size: 16px;
-    color: #888780;
-    max-width: 400px;
-    line-height: 1.7;
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-    opacity: 0.5;
-    transition: opacity 0.2s;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #888780;
-  }
-
-  .scroll-hint:hover { opacity: 0.9; }
-
-  .scroll-arrow {
-    width: 20px; height: 20px;
-    border-right: 1px solid #888780;
-    border-bottom: 1px solid #888780;
-    transform: rotate(45deg);
-    animation: bounce 1.5s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: rotate(45deg) translateY(0); }
-    50% { transform: rotate(45deg) translateY(4px); }
-  }
-
-  .content-section {
-    border-radius: 14px;
-    padding: 5rem 3rem;
-    max-width: 800px;
-    margin: 0 auto;
-
-    &:hover{
-      outline: 5px dotted var(--accent);
-      outline-offset: -5px;
-    }
-  }
-
-  .content-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-    color: var(--color-text-primary);
-  }
-
-  .content-section p {
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--color-text-secondary);
-    margin-bottom: 1rem;
-  }
-
-  .sticky-notice {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--color-background-info);
-    color: var(--color-text-info);
-    font-size: 13px;
-    padding: 8px 16px;
-    border-radius: var(--border-radius-md);
-    margin-top: 1.5rem;
-  }
-
-  .dot-live {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: currentColor;
-    animation: pulse 1.5s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-}
-#footer{
-  height: 65vh;
-  background: linear-gradient(160deg, var(--accent)0%,#585fec 100%);
-  
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 2rem;
-}
-
 *{/* cartes qui s'empillent */
 .panel{
   display: flex;
@@ -283,91 +23,98 @@
   z-index: 3;
 }
 }
+.hover-clear{
+  filter: blur(3px);
+  &:hover{filter: none;}
+}
+.scrollAPP{
+    /* Standard keyframe animation */
+    animation: fade-in ease-in both;
+    
+    /* Bind to the element's visibility timeline */
+    animation-timeline: view(block);
+    
+    /* Define specific start/end points (e.g., only during entry) */
+    animation-range: entry 0% entry 100%;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px);scale: 0; }
+  to   { opacity: 1; transform: translateY(0);scale: 1; }
+}
 </style>
 
-<div id="scroll-container" style="height: 600px; overflow-y: auto; position: relative;">
-  <div id="navbar">
-    <a href="#" class="nav-logo">
-      <span class="nav-logo-dot"></span>
-      <p id="label-demo">Deadline du projet : </p>
-      <p id="demo"></p>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#">Process</a></li>
-      <li><a href="#contact" class="nav-cta">Contact</a></li>
-    </ul>
-  </div>
 
-  <div class="hero" style="position: relative;">
-    <p class="hero-label">Data Science Student</p>
-    <h1>Rendre<br><i>l'abstrait</i><br>Accessible</h1>
-    <p>Donnée : ma spécialité <br><a href="#about">Je</a> vous aide à  la <b>comprendre</b> pour mieux <b>décider</b>.</p>
-    <div class="scroll-hint" onclick="document.getElementById('scroll-container').scrollBy({top: 400, behavior: 'smooth'})">
-      <div class="scroll-arrow"></div>
-      Défiler
-    </div>
-  </div>
-
-  <div class="content-section">
-    <h2>Mes projets</h2>
-    <p>Une sélection de travaux réalisés avec des objectifs variés, allant de l'extraction brute de la donnée au tableau de bord. Chaque projet est une opportunité d'explorer de nouvelles directions créatives et techniques.</p>
-    <p>Si les premiers projets étaient très centrés sur une technologie ou une méthode particulière, ils sont désormais des assemblages plus poussés permettant de surmonter des objectifs plus élevés.</p>
-    <div class="sticky-notice">
-      <div class="dot-live"></div>
-      Attention, voici un élément mis en valeur <strong>sticky</strong>
-    </div>
-    <div>
-      <a href="projets.html"></a>
-    </div>
-  </div>
-
-  <div class="content-section" id="about">
-    <h2>À propos de moi</h2>
-    <p>Approché ludiquement au lycée, c'est en évoluant dans mon parcours que j'ai compris qu'en mélangeant mes compétences et appétances, je pourrais créer des solutions durables.</p>
-  </div>
-
-  <div class="content-section" id="projets">
-    <h2>Top Projets</h2>
-    <p>Découvrons mes projets préférés</p>
-    <p>si click sur le titre, rediriger vers page Projets</p>
-  </div>
-
-  <div class="content-section">
-    <h2>Formation</h2>
-    <div class="sub-cont">
-
-    </div>
-    <p>afficher une frise anti-chronologique, avec les noms des formations; voir plus s'affiche au hover, si click, afficher mes bilans écrits </p>
-  </div>
-  
-  <div class="content-section">
-    <h2>Réflexion sur mon Parcours</h2>
-    <p>après la date d'écriture, afficher le bilan correspondant,possibilité de gallerie si on click sur les icones < ou ></p>
-  </div>
-
-  <div id="footer" style="z-index: 5;">
-    <div class="content-section" id="contact">
-      <h2>Contact</h2>
-      <p>Affichage des différents réseaux</p>
-      <div style="display: grid;">
-        <span>Instagram</span>
-        <span>Linkedin</span>
-        <span>Github</span>
-        <span>Mail</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Maxence Champot</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+  <body>
+    <div id="scroll-container" style="height: 100vh; overflow-y: auto; position: relative;">
+      <div id="navbar">
+        <btn id="toggle-color-mode" style="position:absolute; right: 1rem; color: var(--bg);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+            </svg>
+          </btn>
+        <a href="#" class="nav-logo">
+          <span class="nav-logo-dot"></span>
+          <p>Maxence Champot</p>  
+        </a>
+        <ul class="nav-links">
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="cv.pdf" download>CV</a></li>
+          <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
       </div>
+
+        
+
+      <div class="hero" style="position: relative;">       
+        <p class="hero-label">Data Science Student</p>
+        <h1>Rendre<br><i class="hover-clear">l'abstrait</i><br>Accessible</h1>
+        <p><br><a href="#about">Je</a> vous aide à <b>comprendre</b> la donnée<br>pour mieux <b>décider</b>.</p>
+        <div class="scroll-hint" onclick="document.getElementById('scroll-container').scrollBy({top: 400, behavior: 'smooth'})">
+          <div class="scroll-arrow"></div>
+          Défiler
+        </div>
+      </div>
+
+      <div class="scrollAPP" style="justify-items: center; height: 70vh;padding: 0em; align-content: center;justify-self: center;">
+        <p >
+        <i>Temps restant avant publication</i></p>
+        <h1 id="demo" style="font-size: 80px;color: var(--text);">
+
+        </h1>
     </div>
+     
 
-  </div>
+        <div id="contact">
+          <div  class="scrollAPP" style="color:var(--text); display:flex; padding: 10vw;flex-wrap: wrap;justify-content: space-evenly;">
+            <span><a target="_blank" rel="noopener noreferrer" href="https://fr.linkedin.com/in/maxence-champot-2a9115328" >LinkedIn</a></span> 
+            <span><a target="_blank" rel="noopener noreferrer" href="https://github.com/maxencechampot">Github</a></span>
+            <span><a target="_blank" rel="noopener noreferrer" href="mailto:maxence.champot@etu.univ-poitiers.fr">Mail</a></span>
+            </div>
+            <p style="justify-self: center;"><i>Curiosité toujours récompensée</i></p>
+        </div>
+      
+    </div>
+  </body>
+</html>
 
-</div>
 <script>
   const scrollContainer = document.getElementById('scroll-container');
   const navbar = document.getElementById('navbar');
 
   scrollContainer.addEventListener('scroll', () => {
-    if (scrollContainer.scrollTop > 60) {
+    if (scrollContainer.scrollTop > 120) {
       navbar.classList.add('sticky');
     } else {
       navbar.classList.remove('sticky');
@@ -376,7 +123,7 @@
 </script>
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("May 14, 2026 00:00:00").getTime();
+var countDownDate = new Date("May 25, 2026 00:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -400,8 +147,64 @@ var x = setInterval(function() {
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "Maxence Champot";
+    document.getElementById("demo").innerHTML = "";
     document.getElementById("label-demo").innerHTML = "";
   }
 }, 1000);
+</script>
+
+<style>
+  body.dark{
+    --secondaire:rgb(0, 0, 65);
+    --primaire:rgb(255, 241, 226);
+    --bg-ext:hsl(0 0% 0%);
+        --bg:hsl(0 0% 5%);
+        --bg-int:hsl(0 0% 10%);
+        --text:hsl(0 0% 95%);
+        --text-muted:hsl(0 0% 70%);
+  }
+  btn{
+    border-radius: 8px;
+    padding: 8px;
+    background-color: var(--accent);
+  }
+</style>
+<script>
+const btn = document.getElementById("toggle-color-mode");
+if (localStorage.getItem("theme")==="dark"){
+  document.body.classList.add("dark");
+}
+
+btn.onclick =()=>{
+  document.body.classList.toggle("dark");
+  
+  if(document.body.classList.contains("dark")){
+    localStorage.setItem("theme","dark");
+  }else{
+    localStorage.setItem("theme","light");
+  }
+  }
+</script>
+
+<script>
+var elem = document.documentElement;
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
 </script>
