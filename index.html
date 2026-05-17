@@ -56,55 +56,58 @@
 </head>
   <body>
     <div id="scroll-container" style="height: 100vh; overflow-y: auto; position: relative;">
-      <div id="navbar">
-        <btn id="toggle-color-mode" style="position:absolute; right: 1rem; color: var(--bg);">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-            </svg>
-          </btn>
-        <a href="#" class="nav-logo">
-          <span class="nav-logo-dot"></span>
-          <p>Maxence Champot</p>  
-        </a>
-        <ul class="nav-links">
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#about">À propos</a></li>
-          <li><a href="cv.pdf" download>CV</a></li>
-          <li><a href="#contact" class="nav-cta">Contact</a></li>
-        </ul>
-      </div>
-
         
-
-      <div class="hero" style="position: relative;">       
-        <p class="hero-label">Data Science Student</p>
-        <h1>Rendre<br><i class="hover-clear">l'abstrait</i><br>Accessible</h1>
-        <p><br><a href="#about">Je</a> vous aide à <b>comprendre</b> la donnée<br>pour mieux <b>décider</b>.</p>
-        <div class="scroll-hint" onclick="document.getElementById('scroll-container').scrollBy({top: 400, behavior: 'smooth'})">
-          <div class="scroll-arrow"></div>
-          Défiler
+        <div id="navbar">
+            <btn id="toggle-color-mode" style="position:absolute; right: 1rem; color: var(--bg);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                </svg>
+            </btn>
+            <a href="#" class="nav-logo">
+                <span class="nav-logo-dot"></span>
+                <p>Maxence Champot</p>
+            </a>
+            <ul class="nav-links" style="display: flex;
+    flex-wrap: wrap;">
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="cv.pdf" download>CV</a></li>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            </ul>
         </div>
-      </div>
+        <div class="hero" style="position: relative;">
+            <p class="hero-label">Data Science Student</p>
+            <h1>Rendre<br><i class="hover-clear">l'abstrait</i><br>Accessible</h1>
+            <p><br><a href="#about">Je</a> vous aide à <b>comprendre</b> la donnée<br>pour mieux <b>décider</b>.</p>
+            <div class="scroll-hint" onclick="document.getElementById('scroll-container').scrollBy({top: 400, behavior: 'smooth'})">
+                <div class="scroll-arrow"></div>
+                Défiler
+            </div>
+        </div>
+    
+        <div style="display: flex;justify-content: space-evenly; align-items: center;">
 
-      <div class="scrollAPP" style="justify-items: center; height: 70vh;padding: 0em; align-content: center;justify-self: center;">
+    <div id="actu" class="scrollAPP" style="justify-items: center; height: 70vh;padding: 0em; align-content: center;justify-self: center;">
         <p >
-        <i>Temps restant avant publication</i></p>
+        <i>Temps restant avant publication du Portfolio terminé</i></p>
         <h1 id="demo" style="font-size: 80px;color: var(--text);">
-
         </h1>
     </div>
+    <div id="about"></div>
+    <div id="projets"></div>
      
 
         <div id="contact">
-          <div  class="scrollAPP" style="color:var(--text); display:flex; padding: 10vw;flex-wrap: wrap;justify-content: space-evenly;">
+             <p style="justify-self: center;opacity: 0.3;"><i>Curiosité toujours récompensée</i></p>
+          <div  class="scrollAPP" style="color:var(--text); display:flex; flex-direction:column;gap: 10vw;flex-wrap: wrap;justify-content: space-evenly;">
             <span><a target="_blank" rel="noopener noreferrer" href="https://fr.linkedin.com/in/maxence-champot-2a9115328" >LinkedIn</a></span> 
             <span><a target="_blank" rel="noopener noreferrer" href="https://github.com/maxencechampot">Github</a></span>
             <span><a target="_blank" rel="noopener noreferrer" href="mailto:maxence.champot@etu.univ-poitiers.fr">Mail</a></span>
             </div>
-            <p style="justify-self: center;"><i>Curiosité toujours récompensée</i></p>
+           
         </div>
-      
+      </div>
     </div>
   </body>
 </html>
