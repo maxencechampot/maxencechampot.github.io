@@ -242,6 +242,7 @@ a{
     padding: 0 3em;
     height: 72px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -393,7 +394,6 @@ ul:hover *:not(:hover){
   .scroll-hint {
     position: absolute;
     bottom: 2em;
-    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
