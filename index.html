@@ -13,15 +13,6 @@
   background: linear-gradient(0deg, #ffffff 60%, #e8e0d500 100%);/*Permet de masquer le derriere progressivement*/
   padding-bottom: 40px;
 }
-.panel1{
-  z-index: 1;
-}
-.panel2{
-  z-index: 2;
-}
-.panelN{
-  z-index: 3;
-}
 }
 .hover-clear{
   filter: blur(3px);
@@ -37,7 +28,6 @@
     /* Define specific start/end points (e.g., only during entry) */
     animation-range: entry 0% entry 100%;
 }
-
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(20px);scale: 0; }
   to   { opacity: 1; transform: translateY(0);scale: 1; }
@@ -53,11 +43,16 @@
   <title>Portfolio - Maxence Champot</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
+  <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
   <body>
+     <p style="width: 100vw;opacity: 0.1;">Cette version de portfolio est temporaire, je travaille sur un système d'automatisation et d'amélioration de l'UX / UI</p>
+      
     <div id="scroll-container" style="height: 100vh; overflow-y: auto; position: relative;">
-        
+       
         <div id="navbar">
+
             <btn id="toggle-color-mode" style="position:absolute; right: 1rem; color: var(--bg);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                     <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
@@ -68,43 +63,638 @@
                 <span class="nav-logo-dot"></span>
                 <p>Maxence Champot</p>
             </a>
-            <ul class="nav-links" style="display: flex;
-    flex-wrap: wrap;">
+            <ul class="nav-links" style="display: flex; flex-wrap: wrap;">
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#about">À propos</a></li>
                 <li><a href="cv.pdf" download>CV</a></li>
-                <li><a href="#contact" class="nav-cta">Contact</a></li>
+                <li><button  id="openModal" class="nav-cta">Contact</button></li>
             </ul>
         </div>
         <div class="hero" style="position: relative;">
             <p class="hero-label">Data Science Student</p>
             <h1>Rendre<br><i class="hover-clear">l'abstrait</i><br>Accessible</h1>
-            <p><br><a href="#about">Je</a> vous aide à <b>comprendre</b> la donnée<br>pour mieux <b>décider</b>.</p>
         </div>
+    
+        <div style="flex-direction:column; display:flex; align-items: center;">
+    
+        <section id="projets">
+            <div style="margin-bottom: 2em;">
+                <h1 >Sélection</h1>
+                <p><i>Quelques projets sur lesquels je souhaite porter votre attention</i></p>
+            </div>         
 
-        <div id="actu" class="scrollAPP" style="justify-items: center; height: 70vh;padding: 0em; align-content: center;justify-self: center;">
-            <p >
-            <i>Protfolio en construction</i></p>
-            <h1 id="demo" style="font-size: 80px;color: var(--text);">
-            </h1>
-        </div>
-        <div id="about"></div>
-        <div id="projets"></div>
-     
+            <div id="selection" class="projects-grid">
+                
+                <!-- Début de la carte projet -->
+                <article class="project-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://imgs.search.brave.com/YsMqflmt_haOgSpTm_gA6tlqmZQkFay09jQ69pVckgY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzE3LzQyLzY3LzUx/LzM2MF9GXzE3NDI2/NzUxNTVfc0s3eXM3/dlA4M2pXZnlxcUJO/ZU9Gbk44N04xS2hX/dVEuanBn" alt="Aperçu du projet" class="project-image">
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">ETL</span>
+                            <span class="tag">JSON</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <h3 class="project-title">Gestion de fichiers : conversion JSON vers CSV en Python</h3>
+                        <p class="project-objective">Objectif : En python, lire un fichier JSON et en ressortir des données utilisables pour comprendre la concentration de polluants dans l'air.</p>
+                        <p class="project-meta">
+                            <span class="project-date">15-03-2026</span> • 
+                            <span class="project-client">Université</span>
+                        </p>
+                    </div>
+                </article>
+                <!-- Fin de la carte projet -->
 
-        <div id="contact">
-             <p style="justify-self: center;opacity: 0.3;"><i>Prendre contact</i></p>
-            <div  class="scrollAPP" style="color:var(--text); display:flex;flex-wrap: wrap;justify-content: space-evenly; width: 100vw;">
-              <span><a target="_blank" rel="noopener noreferrer" href="mailto:maxence.champot@etu.univ-poitiers.fr">maxence.champot@etu.univ-poitiers.fr</a></span>
-              <span><a target="_blank" rel="noopener noreferrer" href="https://fr.linkedin.com/in/maxence-champot-2a9115328" >LinkedIn</a></span> 
-              <span><a target="_blank" rel="noopener noreferrer" href="https://github.com/maxencechampot">Github</a></span>
+                <!-- Ajoutez d'autres cartes ici -->
+                 <article class="project-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://imgs.search.brave.com/BCRv3cW2bpwXa3yqnbRbVW_XW7lTUtwE9aBFIUjFH04/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3RpL3Bob3Rv/cy1ncmF0dWl0ZS90/Mi83OTA4ODA1OC1o/b2xpc3RpcXVlLXNv/aW5zLWRlLXNhbnRl/LWNvbmNlcHQtbWV0/dGFudC1lbi12YWxl/dXItbWVkaWNhbC1l/c3NlbnRpZWwtYXB0/aXR1ZGUtZXF1aXBl/bWVudC1ldC1zeW1i/b2xlcy1kZS1iaWVu/LWV0cmUtcG91ci11/bmUtZW4tYm9ubmUt/c2FudGUtbW9kZS1k/ZS12aWUtcGhvdG8u/anBn" alt="Aperçu du projet" class="project-image">
+                        <div class="project-tags">
+                            <span class="tag">SCRUM</span>
+                            <span class="tag">Scoring</span>
+                            <span class="tag">Oral</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <h3 class="project-title">Application de suivi vétérinaire</h3>
+                        <p class="project-objective">En équipe, réaliser en 10 jours une application permettant à un vétérinaire de suivre l'état de santé de ses cheptels</p>
+                        <p class="project-meta">
+                            <span class="project-date">10-06-2026</span> • 
+                            <span class="project-client">Université</span>
+                        </p>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://imgs.search.brave.com/_HMs9h0dbCGV9RG-_Zve9s-8Hak9LyqhVcR30SWHCW4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTgy/NzM2Mjg4L2ZyL3Bo/b3RvL2NvbW11bmlj/YXRpb24tZnJlbmNo/LWRpY3Rpb25uYWly/ZS1tYWNyby5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9enV5/S0Z1NURVcW9ucHdh/ZzJUZlpQYmVIMjBS/cDJLM0RndUU5LVBP/d3JwQT0" alt="Aperçu du projet" class="project-image">
+                        <div class="project-tags">
+                            <span class="tag">Scraping</span>
+                            <span class="tag">UI</span>
+                            <span class="tag">.exe</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <h3 class="project-title">Création d'application d'enrichissement de vocabulaire</h3>
+                        <p class="project-objective">Constituer une base de données à partir d'internet puis faire une application anti "brain-rot" permettant d'apprendre du nouveau vocabulaire.</p>
+                        <p class="project-meta">
+                            <span class="project-date">15-01-2026</span> • 
+                            <span class="project-client">Personnel</span>
+                        </p>
+                    </div>
+                </article>
+
             </div>
+            <style>
+                /* Conteneur principal (votre flexbox) */
+#selection {
+    display: flex;
+    flex-wrap: wrap; /* Permet de passer à la ligne si besoin */
+    gap: 2rem; /* Espace entre les cartes */
+    justify-content: flex-start; /* Alignement à gauche */
+}
+
+/* Structure de la carte */
+.project-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%; /* ou une largeur fixe comme 300px selon votre besoin */
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+}
+
+/* Zone Image + Tags */
+.card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px; /* Hauteur fixe pour l'image */
+    overflow: hidden;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* L'image remplit la zone sans déformation */
+    display: block;
+}
+
+/* Tags en position absolue bas à gauche */
+.project-tags {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    z-index: 10;
+}
+
+.tag {
+    background-color: rgba(0, 0, 0, 0.7); /* Fond sombre semi-transparent */
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    backdrop-filter: blur(4px); /* Effet de flou si nécessaire */
+}
+
+/* Contenu texte */
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1; /* Pousse le contenu pour aligner les cartes */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.project-objective {
+    margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.project-meta {
+    font-size: 0.85rem;
+    color: #888;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+    margin-top: auto;
+}
+
+/* Bouton (si besoin de styles spécifiques) */
+.btn-primary {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+            </style>
+
+            <a style="display: none;" class="btn btn-primary" href="projets.html">Voir tous les projets</a>
+        </section>
+
+        <section id="about">
+            <h1>Curiosité : moteur d'apprentissage</h1>
+            <p>Mon parcours est enrichi par une approche holistique des sciences</p>
+
+            <div class="accordion-container">
+                <details class="accordion-item">
+                <summary class="accordion-header">2025-2028 - Niort - BUT Science des Données</summary>
+                <div class="accordion-content">
+                    <p>Décision logique permettant l'apprentissage pratique stimulant avec une débouchée certaine dans un domaine où les outils m'intéressent.</p>
+                </div>
+                </details>
+
+                <details class="accordion-item">
+                <summary class="accordion-header">2024 - Nantes - L1 Sciences de la Vie</summary>
+                <div class="accordion-content">
+                    <p>En quête de découvrir toujours plus le fonctionnement du cerveau, j'ai essayé d'approcher cette voie par la pure académie mais la pratique me manquait et l'avenir incertain d'académicien m'inquiétait.</p>
+                </div>
+                </details>
+
+                <details class="accordion-item">
+                <summary class="accordion-header">2023 - Nantes - LAS 1 Psychologie</summary>
+                <div class="accordion-content">
+                    <p>Voie généraliste vue comme un défi, les 2 domaines m'intéressaient mais je ne savais pas quoi faire ensuite. Face au défi que représentait la première année de médecine et le manque de clarté de mon objectif, j'ai choisi de passer par un parcours plus généraliste.</p>
+                </div>
+                </details>
+
+                <details class="accordion-item">
+                <summary class="accordion-header">2022 - Châteaubriant - Baccalauréat Général (NSI/SVT + option Sport)</summary>
+                <div class="accordion-content">
+                    <p>Numérique et science de l'informatique, Science de la Vie et de la Terre avec l'option sport étaient des choix passions, suite logique de mon esprit curieux dans ces domaines.</p>
+                </div>
+                </details>
+            </div>
+
+            <div class="qualities-section">
+                <h3>Mes qualités</h3>
+                <ul class="qualities-list">
+                <li>Adaptabilité et agilité face aux nouveaux défis</li>
+                <li>Esprit d'analyse et résolution de problèmes</li>
+                <li>Curiosité intellectuelle et veille constante</li>
+                <li>Collaboration et communication efficace</li>
+                <li>Autonomie et rigueur dans l'exécution</li>
+                </ul>
+            </div>
+
+            <div class="choice-section">
+                <h3>Pourquoi ce choix de formation ?</h3>
+                <p>J'ai choisi la Science des données car je suis certain de mon attrait pour la <b>création</b> de solutions via les outils <b>informatiques</b> et que je veux aider les autres à prendre des décisons pragmatiques <b>durables</b>. Il découle d'une convergence entre mes passions personnelles, mes capacités naturelles et la <b>nécessité</b> croissante de compétences dans ce secteur.</p>
+            </div>
+
+            <div class="choice-section">
+                <i>Bilan</i>
+                <h3>Choix du parcours pour être plus performant : VCOD</h3>
+                <p>VCOD (<i>Visualisation et Conception d'Outils Décisionnels</i>), c'est le parcours que je pense suivre l'année prochaine. <br>
+                    Lorsqu'on est en BUT Science des données, la première année est aussi équilibrée en mathématiques qu'en informatique, ce qui permet d'acquérir les bases de ces 2 domaines nécessaires pour pouvoir ensuite se spécialiser dans des approches différentes de l'informatique à la décisionnelle.<br>
+                    J'ai découvert cette année la satisfaction qu'apporte les résolutions de problèmes mathématiques, mais mon aisance est plus marquée du côté informatique et face au 2 années d'alternance qui m'attendent, je vais me diriger vers le parcours VCOD.<br>
+                    En tant que futur <b>alternant</b> chargé de Pilotage et Gestion des flux à la MACIF, 
+                    j'aurais la <b>responsabilité</b> très technique de mener des projets de selon les <b>bonnes pratiques</b> de développement tout en cherchant l'optimisation de processus déjà existants.
+                    Bien que la formation à l'IUT Niortais limite les différences de capacités en adaptant le programme, c'est par ce choix que je pense développer davantage mes capacité de gestion de projets, d'<b></b>autonomie sur les outils et finalement, permettre de livrer des outils efficacement qui s'adaptent à l'aide aux décisions.
+                </p>
+            </div>
+
+            <a style="display: none;" class="btn btn-primary" href="about.html">Creuser la découverte</a>
+        </section>
+
+         <!-- MODALE -->
+    <div class="modal" id="contactModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-title">
+        
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+
+            <div class="business-card">
+
+                <!-- PHOTO -->
+                <div class="card-left">
+                    <img src="https://imgs.search.brave.com/lusccpZIy0SLic-zFdNIBqwo87zIVG9qfZGE3FLlUzo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L2ZyZWUtcGhvdG8v/c2V0LXN0YXRpb25l/cnktd2l0aC1lbXB0/eS1ibGFuay1ncmV5/LW5vdGVwYWQtYnVz/aW5lc3MtY2FyZC15/b3VyLWNvbnRhY3Rf/MTc2NTMyLTkyNzEu/anBnP3NlbXQ9YWlz/X3Rlc3RfYyZ3PTc0/MCZxPTgw" alt="Photo de profil">
+                </div>
+
+                <!-- INFORMATIONS -->
+                <div class="card-right">
+                    <h2 id="contact-title">
+                        Champot Maxence
+                    </h2>
+
+                    <h3>Science des données | Alternant Gestion & Pilotage des Flux</h3>
+
+                    <div class="social-links" style="justify-content: space-evenly;">
+
+                        <a href="https://fr.linkedin.com/in/maxence-champot-2a9115328" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+
+                        <a href="https://github.com/Maxencechampot" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+
+                        <a href="mailto:maxence.champot@etu.univ-poitiers.fr">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+
+                        
+                    </div>
+                    
+                        <a href="assets/CV.pdf" download class="cv-btn">
+                            <i class="fas fa-download"></i>
+                            CV
+                        </a>
+
+                </div>
+
+            </div>
+
         </div>
-      
+
+    </div>
+
+    <script src="contact-modal.js"></script>
+<style>
+    
+.contact-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #0077b5;
+    color: white;
+    font-size: 18px;
+}
+
+/* Overlay */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(10px);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+/* Fenêtre */
+
+.modal-content {
+    background: white;
+    width: 750px;
+    max-width: 90%;
+    border-radius: 15px;
+    padding: 30px;
+    position: relative;
+
+    animation: appear 0.3s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fermer */
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Carte */
+
+.business-card {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+/* Partie gauche */
+
+.card-left {
+    flex: 1;
+}
+
+.card-left img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+
+    border-radius: 12px;
+    border: 4px solid #000000;
+}
+
+/* Partie droite */
+
+.card-right {
+    flex: 2;
+}
+
+.card-right h2 {
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.card-right h3 {
+    color: #0300b586;
+    margin-bottom: 15px;
+}
+
+.card-right p {
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/* Réseaux */
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    transition: 0.3s;
+    
+    &:hover {
+    color: #4b0fff;
+    }
+}
+
+.cv-btn {
+    margin-top: 25px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    background: #4b0fff73;
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.cv-btn:hover {
+    background: #4b0fff;
+    transform: translateY(-2px);
+}
+</style>
+<style>
+  #about {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+
+  #about h1 {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+
+  #about p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+
+  .accordion-container {
+    margin: 40px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .accordion-item:last-child {
+    border-bottom: none;
+  }
+
+  .accordion-header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .accordion-header:hover {
+    background-color: #e9ecef;
+  }
+
+  .accordion-header::after {
+    content: '+';
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+  }
+
+  .accordion-item[open] .accordion-header::after {
+    transform: rotate(45deg);
+  }
+
+  .accordion-content {
+    padding: 20px;
+    background-color: #fff;
+    line-height: 1.6;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .qualities-section, .choice-section {
+    margin: 40px 0;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+  }
+
+  .qualities-section h3, .choice-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+
+  .qualities-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+
+  .qualities-list li {
+    padding: 10px 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+  }
+
+  .qualities-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .choice-section p {
+    line-height: 1.8;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 600px) {
+    #about h1 {
+      font-size: 2.2rem;
+    }
+    
+    .qualities-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+        
+         <section style="display: none;">
+            <div class="bilans-overlay">
+
+                <div  id="bilans" style="margin: 2vw;">
+                    <div style="border-radius: 4px; background-color: #f1f1f1; margin:2vw; padding: 2vw;">
+                        <h2>Choix du parcours pour être plus performant : VCOD</h2>
+                        <p>VCOD (<i>Visualisation et Conception d'Outils Décisionnels</i>), c'est le parcours que je pense suivre l'année prochaine. <br>
+                            Lorsqu'on est en BUT Science des données, la première année est aussi équilibrée en mathématiques qu'en informatique, ce qui permet d'acquérir les bases de ces 2 domaines nécessaires pour pouvoir ensuite se spécialiser dans des approches différentes de l'informatique à la décisionnelle.<br>
+                            J'ai découvert cette année la satisfaction qu'apporte les résolutions de problèmes mathématiques, mais mon aisance est plus marquée du côté informatique et face au 2 années d'alternance qui m'attendent, je vais me diriger vers le parcours VCOD.<br>
+                            En tant que futur alternant chargé de Pilotage et Gestion des flux à la MACIF, 
+                            j'aurais la responsabilité très technique de mener des projets de selon les bonnes pratiques de développement tout en cherchant l'optimisation de processus déjà existants.
+                            Bien que la formation à l'IUT Niortais limite les différences de capacités en adaptant le programme, c'est par ce choix que je pense développer davantage mes capacité de gestion de projets, d'autonomie sur les outils et finalement, permettre de livrer des outils efficacement qui s'adaptent à l'aide aux décisions.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section style="display: none;" id="contact">
+
+        </section>
+      </div>
     </div>
   </body>
 </html>
-
+<style>
+</style>
 <script>
   const scrollContainer = document.getElementById('scroll-container');
   const navbar = document.getElementById('navbar');

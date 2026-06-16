@@ -47,7 +47,6 @@
     background-color: var(--text);
     }
 }
-
 /* width */
 ::-webkit-scrollbar {
   width: 0px;
@@ -510,3 +509,17 @@ ul:hover *:not(:hover){
   }
   
 }
+
+    section{
+        min-height: 100vh;
+        justify-content: center;
+        align-content: center;
+    }
+    .btn {
+        border-radius: 4px;
+        padding: 1em 2em;
+        background-color: var(--primaire);
+    }
+    .btn-primary{
+        background-color: var(--accent);
+    }
