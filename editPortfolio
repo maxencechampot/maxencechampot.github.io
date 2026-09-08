@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #12141A;
+    --surface: #191C24;
+    --border: #262A35;
+    --text: #E4E6EA;
+    --muted: #8B909B;
+    --accent: #4FD1FF;
+    --accent-warm: #F2B84B;
+    --danger: #E8607A;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+  }
+
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.75rem;
+    margin: 0 0 40px;
+  }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+
+  section + section { margin-top: 40px; }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 14px 0 6px;
+  }
+
+  input, textarea {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    padding: 10px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  textarea { resize: vertical; min-height: 90px; }
+
+  button {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 18px;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0B1015;
+    margin-top: 20px;
+  }
+
+  .btn-danger {
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  #auth-section form { max-width: 320px; }
+
+  .project-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+
+  .project-row .info { min-width: 0; }
+
+  .project-row .info strong {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+  }
+
+  .project-row .info span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .message {
+    font-size: 0.85rem;
+    margin-top: 14px;
+  }
+
+  .message.error { color: var(--danger); }
+  .message.success { color: var(--accent); }
+
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<main>
+  <h1>Admin portfolio</h1>
+
+  <!-- Formulaire de connexion -->
+  <section id="auth-section">
+    <h2>Connexion</h2>
+    <form id="login-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" required>
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" required>
+      <button type="submit" class="btn-primary">Se connecter</button>
+    </form>
+    <p id="login-message" class="message error" hidden></p>
+  </section>
+
+  <!-- Panneau admin, masqué tant qu'on n'est pas connecté -->
+  <section id="admin-section" hidden>
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <h2>Ajouter un projet</h2>
+      <button id="logout-btn" class="btn-secondary">Se déconnecter</button>
+    </div>
+
+    <form id="project-form">
+      <label for="title">Titre</label>
+      <input type="text" id="title" required>
+
+      <label for="slug">Slug (identifiant dans l'URL)</label>
+      <input type="text" id="slug" placeholder="genere-automatiquement-si-vide">
+
+      <label for="summary">Résumé court (pour la card)</label>
+      <input type="text" id="summary">
+
+      <label for="description">Description complète</label>
+      <textarea id="description"></textarea>
+
+      <label for="date">Date</label>
+      <input type="date" id="date" required>
+
+      <label for="category">Catégorie</label>
+      <input type="text" id="category" placeholder="Machine Learning">
+
+      <label for="value">Score / valeur (axe Y du graphique)</label>
+      <input type="number" step="0.1" id="value" required>
+
+      <label for="tech_stack">Stack technique (séparée par des virgules)</label>
+      <input type="text" id="tech_stack" placeholder="Python, PyTorch, Docker">
+
+      <label for="github_url">Lien GitHub</label>
+      <input type="url" id="github_url">
+
+      <label for="demo_url">Lien démo</label>
+      <input type="url" id="demo_url">
+
+      <button type="submit" class="btn-primary">Ajouter le projet</button>
+    </form>
+    <p id="form-message" class="message" hidden></p>
+
+    <section>
+      <h2>Projets existants</h2>
+      <div id="project-list">Chargement…</div>
+    </section>
+  </section>
+</main>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL = 'https://trfqnyhjbioclkzxxpii.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_1yI6MW4R3UNfFPt_YdmL0A_fRu9JPCe';
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const authSection = document.getElementById('auth-section');
+const adminSection = document.getElementById('admin-section');
+
+// -- 1. Gestion de la session ------------------------------------------
+// onAuthStateChange se déclenche à la connexion, déconnexion, et au
+// rechargement de la page si une session existe déjà (persistée localement).
+supabase.auth.onAuthStateChange((_event, session) => {
+  toggleUI(session);
+  if (session) loadProjects();
+});
+
+function toggleUI(session) {
+  authSection.hidden = !!session;
+  adminSection.hidden = !session;
+}
+
+// -- 2. Connexion / déconnexion ------------------------------------------
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const msg = document.getElementById('login-message');
+
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    msg.textContent = 'Identifiants invalides.';
+    msg.hidden = false;
+  } else {
+    msg.hidden = true;
+  }
+});
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+  supabase.auth.signOut();
+});
+
+// -- 3. Ajout d'un projet ------------------------------------------------
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // retire les accents
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
+document.getElementById('project-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById('form-message');
+
+  const title = document.getElementById('title').value;
+  const slugInput = document.getElementById('slug').value;
+
+  const payload = {
+    title,
+    slug: slugInput.trim() || slugify(title),
+    summary: document.getElementById('summary').value,
+    description: document.getElementById('description').value,
+    date: document.getElementById('date').value,
+    category: document.getElementById('category').value,
+    value: parseFloat(document.getElementById('value').value),
+    tech_stack: document.getElementById('tech_stack').value
+      .split(',').map(s => s.trim()).filter(Boolean),
+    github_url: document.getElementById('github_url').value || null,
+    demo_url: document.getElementById('demo_url').value || null
+  };
+
+  const { error } = await supabase.from('projects').insert([payload]);
+
+  msg.hidden = false;
+  if (error) {
+    msg.className = 'message error';
+    msg.textContent = error.message.includes('duplicate')
+      ? 'Ce slug existe déjà, choisissez-en un autre.'
+      : 'Erreur lors de l\'ajout.';
+  } else {
+    msg.className = 'message success';
+    msg.textContent = 'Projet ajouté.';
+    e.target.reset();
+    loadProjects();
+  }
+});
+
+// -- 4. Liste + suppression ------------------------------------------------
+async function loadProjects() {
+  const list = document.getElementById('project-list');
+  const { data, error } = await supabase
+    .from('projects')
+    .select('*')
+    .order('date', { ascending: false });
+
+  if (error) {
+    list.innerHTML = '<p class="message error">Erreur de chargement.</p>';
+    return;
+  }
+
+  if (data.length === 0) {
+    list.innerHTML = '<p class="message">Aucun projet pour le moment.</p>';
+    return;
+  }
+
+  list.innerHTML = data.map(p => `
+    <div class="project-row">
+      <div class="info">
+        <strong>${p.title}</strong>
+        <span>${p.date} · ${p.slug}</span>
+      </div>
+      <button class="btn-danger" data-id="${p.id}">Supprimer</button>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('.btn-danger').forEach(btn => {
+    btn.addEventListener('click', () => deleteProject(btn.dataset.id));
+  });
+}
+
+async function deleteProject(id) {
+  if (!confirm('Supprimer ce projet ?')) return;
+
+  const { error } = await supabase.from('projects').delete().eq('id', id);
+  if (error) {
+    alert('Erreur lors de la suppression.');
+    return;
+  }
+  loadProjects();
+}
+</script>
+
+</body>
+</html>
